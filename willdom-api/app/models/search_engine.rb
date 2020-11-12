@@ -16,9 +16,9 @@ class SearchEngine
   end
 
   def perform(text)
-    response = {}
-    response[:google] = do_search(GOOGLE_ENGINE, text) if search_in_google?
-    response[:bing] = do_search(BING_ENGINE, text) if search_in_bing?
+    response = []
+    response += do_search(GOOGLE_ENGINE, text) if search_in_google?
+    response += do_search(BING_ENGINE, text) if search_in_bing?
     response
   end
 
@@ -42,32 +42,32 @@ class SearchEngine
   end
 
   def normalize_google_resource(data)
-    response = {}
-    response[:results] ||= []
+    results = []
     (data["items"] || []).each do |result|
       result_data = {}
+      result_data[:source] = GOOGLE_ENGINE
       result_data[:title] = result["title"]
       result_data[:link] = result["link"]
       result_data[:snippet] = result["snippet"]
 
-      response[:results] << result_data
+      results << result_data
     end
-    response
+    results
   end
 
   def normalize_bing_resource(data)
-    response = {}
-    response[:results] ||= []
+    results = []
     bing_data = data["webPages"] || {}
     (bing_data["value"] || []).each do |result|
       result_data = {}
+      result_data[:source] = BING_ENGINE
       result_data[:title] = result["name"]
       result_data[:link] = result["url"]
       result_data[:snippet] = result["snippet"]
 
-      response[:results] << result_data
+      results << result_data
     end
-    response
+    results
   end
 
   def search_in_google?
