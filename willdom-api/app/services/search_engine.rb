@@ -5,9 +5,9 @@ require 'json'
 class SearchEngine
   attr_reader :search_engine, :text
 
-  GOOGLE_ENGINE = "google"
-  BING_ENGINE = "bing"
-  GOOGLE_BING = "google_bing"
+  GOOGLE_ENGINE = 'google'.freeze
+  BING_ENGINE = 'bing'.freeze
+  GOOGLE_BING = 'google_bing'.freeze
 
   ENGINE_OPTIONS = [GOOGLE_ENGINE, BING_ENGINE, GOOGLE_BING]
 
@@ -43,12 +43,12 @@ class SearchEngine
 
   def normalize_google_resource(data)
     results = []
-    (data["items"] || []).each do |result|
+    (data['items'] || []).each do |result|
       result_data = {}
       result_data[:source] = GOOGLE_ENGINE
-      result_data[:title] = result["title"]
-      result_data[:link] = result["link"]
-      result_data[:snippet] = result["snippet"]
+      result_data[:title] = result['title']
+      result_data[:link] = result['link']
+      result_data[:snippet] = result['snippet']
 
       results << result_data
     end
@@ -57,13 +57,13 @@ class SearchEngine
 
   def normalize_bing_resource(data)
     results = []
-    bing_data = data["webPages"] || {}
-    (bing_data["value"] || []).each do |result|
+    bing_data = data['webPages'] || {}
+    (bing_data['value'] || []).each do |result|
       result_data = {}
       result_data[:source] = BING_ENGINE
-      result_data[:title] = result["name"]
-      result_data[:link] = result["url"]
-      result_data[:snippet] = result["snippet"]
+      result_data[:title] = result['name']
+      result_data[:link] = result['url']
+      result_data[:snippet] = result['snippet']
 
       results << result_data
     end
@@ -87,14 +87,14 @@ class SearchEngine
   end
 
   def google_api_key
-    "AIzaSyAMX-eUI4e_otj_OdH1SJAbZjJOLvKKtZY"
+    'AIzaSyAMX-eUI4e_otj_OdH1SJAbZjJOLvKKtZY'
   end
 
   def bing_api_endpoint
-    "https://api.bing.microsoft.com/v7.0/search?"
+    'https://api.bing.microsoft.com/v7.0/search?'
   end
 
   def bing_api_key
-    "68795442290c4204989e5cf9f048c193"
+    '68795442290c4204989e5cf9f048c193'
   end
 end
