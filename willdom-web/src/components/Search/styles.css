@@ -1,0 +1,19 @@
+.title {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.item-result {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.source-container {
+  text-align: right;
+  padding-right: 30px;
+}
+
+.source-result-img {
+  width: 30px;
+  height: 30px;
+}
