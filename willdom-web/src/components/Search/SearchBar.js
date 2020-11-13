@@ -4,8 +4,6 @@ import { Row, Col, Input, FormGroup, Button, Label } from 'reactstrap';
 import { connect } from 'react-redux';
 import SearchActions from '../../redux/actions/SearchActions';
 
-import SearchResultItem from './SearchResultItem';
-
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -45,12 +43,6 @@ class SearchBar extends Component {
   }
 
   render() {
-
-    let sortedResults = this.props.searchResults.sort((a, b) => a.title > b.title ? 1 : -1);
-    const contentResult = sortedResults.map((result, idx) => {
-      return <SearchResultItem key={idx} result={result} />
-    });
-
     return (
       <Col xl="12">
         <Row>
