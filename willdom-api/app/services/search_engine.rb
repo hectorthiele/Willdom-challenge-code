@@ -87,7 +87,7 @@ class SearchEngine
   end
 
   def google_api_key
-    'AIzaSyAMX-eUI4e_otj_OdH1SJAbZjJOLvKKtZY'
+    ENV['GOOGLE_API_KEY'] ||'AIzaSyAMX-eUI4e_otj_OdH1SJAbZjJOLvKKtZY'
   end
 
   def bing_api_endpoint
@@ -95,6 +95,6 @@ class SearchEngine
   end
 
   def bing_api_key
-    '68795442290c4204989e5cf9f048c193'
+    ENV['BING_API_KEY'] || '68795442290c4204989e5cf9f048c193'
   end
 end
